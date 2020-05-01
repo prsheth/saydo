@@ -2,10 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:saydo/constants.dart';
 import 'package:saydo/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
+import 'package:saydo/models/task.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: 'Buy milk'),
+    Task(name: 'Buy eggs'),
+    Task(name: 'Buy bread')
+  ];
   Widget buildBottomSheet(BuildContext context) {
-    return AddTaskScreen();
+    return AddTaskScreen((newTaskTitle) {
+      setState(() {
+        tasks.add(Task(name: newTaskTitle));
+      });
+    });
   }
 
   @override
@@ -50,7 +65,7 @@ class TasksScreen extends StatelessWidget {
                   style: kHeaderTextStyle,
                 ),
                 Text(
-                  '12 Tasks ',
+                  '${tasks.length} Tasks ',
                   style: KSubHeaderTextStyle,
                 ),
               ],
@@ -60,7 +75,7 @@ class TasksScreen extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: kTasksScreenBox,
-              child: TasksList(),
+              child: TasksList(tasks: tasks),
             ),
           )
         ],
