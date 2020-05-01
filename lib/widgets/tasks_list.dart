@@ -13,20 +13,17 @@ class TasksList extends StatelessWidget {
         return ListView.builder(
           itemBuilder: (context, index) {
             return TaskTile(
-                taskTitle: Provider.of<TaskData>(context)
-                    .tasks[index]
+                taskTitle: taskData.tasks[index]
                     .name, //Widget refers to the stateful widget which gets the property form up stream
-                isChecked:
-                    Provider.of<TaskData>(context).tasks[index].isComplete,
+                isChecked: taskData.tasks[index].isComplete,
                 checkboxCallback: (bool checkboxState) {
 //              setState(() {
 //                Provider.of<TaskData>(context).tasks[index].toggleComplete();
 //              });
                 });
           },
-          itemCount: Provider.of<TaskData>(context)
-              .tasks
-              .length, //SETS THE UPPER BOUND FOR THE LIST VIEW
+          itemCount:
+              taskData.tasks.length, //SETS THE UPPER BOUND FOR THE LIST VIEW
         );
       },
     );

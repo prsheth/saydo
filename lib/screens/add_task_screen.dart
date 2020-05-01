@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:saydo/constants.dart';
+import 'package:saydo/models/task.dart';
+import 'package:saydo/models/task_data.dart';
+import 'package:provider/provider.dart';
 
 class AddTaskScreen extends StatelessWidget {
   String newTaskTile;
-  final Function addTaskCallback;
-  AddTaskScreen(this.addTaskCallback);
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,8 @@ class AddTaskScreen extends StatelessWidget {
             FlatButton(
                 onPressed: () {
                   //FINAL TASK TILE AND ADD TO TASKS
-                  addTaskCallback(newTaskTile);
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTasks(newTaskTile);
                   Navigator.pop(context);
                 },
                 child: Text(

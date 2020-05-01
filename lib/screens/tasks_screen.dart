@@ -9,11 +9,7 @@ import 'package:saydo/models/task_data.dart';
 
 class TasksScreen extends StatelessWidget {
   Widget buildBottomSheet(BuildContext context) {
-    return AddTaskScreen((newTaskTitle) {
-//      setState(() {
-//        TaskData().addTasks(newTaskTitle);
-//      });
-    });
+    return AddTaskScreen();
   }
 
   @override
