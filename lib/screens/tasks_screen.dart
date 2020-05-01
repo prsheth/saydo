@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:saydo/constants.dart';
 import 'package:saydo/widgets/tasks_list.dart';
+import 'add_task_screen.dart';
 
 class TasksScreen extends StatelessWidget {
+  Widget buildBottomSheet(BuildContext context) {
+    return AddTaskScreen();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,6 +17,11 @@ class TasksScreen extends StatelessWidget {
         child: Icon(Icons.add),
         onPressed: () {
           //On press
+          showModalBottomSheet(
+            context: context,
+            builder: buildBottomSheet,
+            //isScrollControlled: true,
+          );
         },
       ),
       body: Column(

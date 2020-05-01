@@ -6,6 +6,12 @@ const kHeaderTextStyle = TextStyle(
   fontWeight: FontWeight.w700,
 );
 
+const kHeader2TextStyle = TextStyle(
+  fontSize: 30.0,
+  color: Colors.lightBlueAccent,
+  fontWeight: FontWeight.w400,
+);
+
 const KSubHeaderTextStyle = TextStyle(
   color: Colors.white,
   fontSize: 18.0,
