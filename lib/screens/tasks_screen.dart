@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:saydo/constants.dart';
 import 'package:saydo/widgets/tasks_list.dart';
 import 'add_task_screen.dart';
 import 'package:saydo/models/task.dart';
+import 'package:provider/provider.dart';
+import 'package:saydo/models/task_data.dart';
 
-class TasksScreen extends StatefulWidget {
-  @override
-  _TasksScreenState createState() => _TasksScreenState();
-}
-
-class _TasksScreenState extends State<TasksScreen> {
-  List<Task> tasks = [
-    Task(name: 'Buy milk'),
-    Task(name: 'Buy eggs'),
-    Task(name: 'Buy bread')
-  ];
+class TasksScreen extends StatelessWidget {
   Widget buildBottomSheet(BuildContext context) {
     return AddTaskScreen((newTaskTitle) {
-      setState(() {
-        tasks.add(Task(name: newTaskTitle));
-      });
+//      setState(() {
+//        TaskData().addTasks(newTaskTitle);
+//      });
     });
   }
 
@@ -65,7 +58,7 @@ class _TasksScreenState extends State<TasksScreen> {
                   style: kHeaderTextStyle,
                 ),
                 Text(
-                  '${tasks.length} Tasks ',
+                  '${Provider.of<TaskData>(context).taskLength} Tasks ',
                   style: KSubHeaderTextStyle,
                 ),
               ],
@@ -75,7 +68,7 @@ class _TasksScreenState extends State<TasksScreen> {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 20.0),
               decoration: kTasksScreenBox,
-              child: TasksList(tasks: tasks),
+              child: TasksList(),
             ),
           )
         ],
